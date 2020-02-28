@@ -302,22 +302,22 @@ var buildList = function(value, length) {
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 var fizzBuzz = function(n) {
     var newArr = [];
-    var x = 1;
-    if (x <= n) {
-        if (x % 15 === 0) {
-            newArr.push('FizzBuzz');
-        } else if (x % 3 === 0) {
-            newArr.push('Fizz');
-        } else if (x % 5 === 0) {
-            newArr.push('Buzz');
-        } else {
-            newArr.push(x.toString());
-        }
-        x += 1;
-        return newArr.concat(fizzBuzz(n));
+
+    if (n === 0) {
+        return newArr;
     }
-    
-    
+
+    if (n % 15 === 0) {
+        newArr.push('FizzBuzz');
+    } else if (n % 3 === 0) {
+        newArr.push('Fizz');
+    } else if (n % 5 === 0) {
+        newArr.push('Buzz');
+    } else {
+        newArr.push(n.toString());
+    }
+    var result = fizzBuzz(n-1);
+    return result.concat(newArr);
 
 };
 
