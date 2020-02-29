@@ -392,12 +392,12 @@ var countValuesInObj = function(obj, value) {
 var replaceKeysInObj = function(obj, oldKey, newKey) {
     for (var prop in obj) {
         var value = obj[prop];
+        if (typeof value === 'object') {
+            obj[prop] = replaceKeysInObj(value, oldKey, newKey);
+        }
         if (prop === oldKey) {
             obj[newKey] = value;
             delete obj[oldKey];
-        }
-        if (typeof value === 'object') {
-           obj[prop] = replaceKeysInObj(value, oldKey, newKey);
         }
     }
     return obj;
@@ -409,7 +409,7 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
-    
+     
     if (n === 1) {
         return [0, 1];
     } else if (n === 0 || n < 0) {
@@ -427,6 +427,7 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
