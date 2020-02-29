@@ -427,6 +427,16 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+    if (n < 0) {
+        return null;
+    }
+    if (n === 0) {
+        return 0;
+    } else if (n === 1) {
+        return 1;
+    } else {
+        return nthFibo(n-2) + nthFibo(n-1);
+    }
 
 };
 
