@@ -505,20 +505,20 @@ var flatten = function(array) {
 var letterTally = function(str, obj = {}) {
     
     var letter = str[0];
-    console.log(letter);
+    // console.log(letter);
 
-    console.log(obj);
+    // console.log(obj);
     if (str.length === 0) {
         return obj;
     }
 
     if (obj.hasOwnProperty(letter)) {
         obj[letter] = obj[letter] + 1;
-        console.log(obj);
+        // console.log(obj);
         letterTally(str.slice(1) , obj);
     } else {
         obj[letter] = 1;
-        console.log(obj);
+        // console.log(obj);
         letterTally(str.slice(1) , obj);;
     }
 
@@ -531,6 +531,18 @@ var letterTally = function(str, obj = {}) {
 // compress([1,2,2,3,4,4,5,5,5]) // [1,2,3,4,5]
 // compress([1,2,2,3,4,4,2,5,5,5,4,4]) // [1,2,3,4,2,5,4]
 var compress = function(list) {
+    var newArr = [];
+
+    if (list.length === 0) {
+        return newArr;
+    }
+    if (list[0] !== list[1]) {
+        newArr.push(list[0]);
+        newArr = newArr.concat(compress(list.slice(1)));
+    } else {
+        newArr = newArr.concat(compress(list.slice(1)));       
+    }
+    return newArr;
 };
 
 // 33. Augment every element in a list with a new value where each element is an array
